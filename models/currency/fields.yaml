@@ -23,6 +23,12 @@ fields:
         span: auto
         tab: Currency
 
+    name:
+        label: responsiv.currency::lang.currency.currency_name
+        comment: responsiv.currency::lang.currency.currency_name_help
+        span: auto
+        tab: Currency
+
     currency_symbol:
         label: responsiv.currency::lang.currency.currency_symbol
         comment: responsiv.currency::lang.currency.currency_symbol_help

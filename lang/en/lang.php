@@ -29,6 +29,8 @@ return [
         'is_enabled_help' => 'Make currency available.',
         'currency_code' => 'Currency code',
         'currency_code_help' => 'International currency code, e.g. USD',
+        'currency_name' => 'Currency name',
+        'currency_name_help' => '',
         'currency_symbol' => 'Symbol',
         'currency_symbol_help' => 'Symbol to put beside amount, e.g. $',
         'decimal_point' => 'Decimal Point',
