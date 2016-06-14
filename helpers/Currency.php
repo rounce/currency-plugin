@@ -40,8 +40,7 @@ class Currency
             else $toCurrency = Session::get('responsiv.currency');
         }
 
-        if($fromCurrency != $toCurrency) $result = $this->convert($result, $toCurrency, $fromCurrency);
-        else $result = $number;
+        $result = $this->convert($result, $toCurrency, $fromCurrency);
 
         $currencyObj = $toCurrency
             ? CurrencyModel::findByCode($toCurrency)
@@ -63,6 +62,7 @@ class Currency
         if (!$fromCurrency) {
             $fromCurrency = $this->primaryCode();
         }
+        if ($fromCurrency == $toCurrency) return $value;
 
         return CurrencyConverter::instance()->convert($value, $fromCurrency, $toCurrency);
     }

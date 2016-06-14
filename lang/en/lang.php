@@ -41,6 +41,10 @@ return [
         'not_available_help' => 'There are no other currencies set up.',
         'hint_currencies' => 'Create new currencies here for translating front-end content. The default currency represents the content before it has been translated.',
     ],
+    'currency_picker' => [
+        'name' => 'Currency picker',
+        'description' => 'Currency picker'
+    ],
     'converter' => [
         'class_name' => 'Converter',
         'refresh_interval' => 'Update interval'
