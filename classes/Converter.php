@@ -63,7 +63,7 @@ class Converter extends Singleton
             ->where('created_at', '>', $intervalDate)
         ;
 
-        if ($record = $record->first()) {
+        if (($record = $record->first())) {
             return self::$rateCache[$key] = $record->rate;
         }
 

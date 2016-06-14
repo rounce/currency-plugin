@@ -1,5 +1,6 @@
 <?php namespace Responsiv\Currency\Helpers;
 
+use Session;
 use Responsiv\Currency\Models\Currency as CurrencyModel;
 use Responsiv\Currency\Classes\Converter as CurrencyConverter;
 
@@ -34,9 +35,13 @@ class Currency
         $fromCurrency = strtoupper($from);
         $decimals = $format == 'short' ? 0 : 2;
 
-        if ($toCurrency) {
-            $result = $this->convert($result, $toCurrency, $fromCurrency);
+        if (!$toCurrency) {
+            if(!Session::has('responsiv.currency')) $toCurrency = $this->primaryCode();
+            else $toCurrency = Session::get('responsiv.currency');
         }
+
+        if($fromCurrency != $toCurrency) $result = $this->convert($result, $toCurrency, $fromCurrency);
+        else $result = $number;
 
         $currencyObj = $toCurrency
             ? CurrencyModel::findByCode($toCurrency)

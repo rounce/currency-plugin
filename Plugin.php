@@ -40,7 +40,12 @@ class Plugin extends PluginBase
      *
      * @return array
      */
-    public function registerComponents() { }
+    public function registerComponents()
+    {
+        return [
+            'Responsiv\Currency\Components\Currencies' => 'currencies'
+        ];
+    }
 
     /**
      * Registers any back-end permissions used by this plugin.
@@ -109,4 +114,5 @@ class Plugin extends PluginBase
             // 'Responsiv\Currency\ExchangeTypes\Coinmill'            => 'coinmill',
         ];
     }
+
 }

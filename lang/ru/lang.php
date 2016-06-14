@@ -41,6 +41,10 @@ return [
         'not_available_help' => 'Не задано ни одной валюты',
         'hint_currencies' => 'Create new currencies here for translating front-end content. The default currency represents the content before it has been translated.',
     ],
+    'currency_picker' => [
+        'name' => 'Выбор валюты',
+        'description' => 'Список валют'
+    ],
     'converter' => [
         'class_name' => 'Конвертор',
         'refresh_interval' => 'Обновить интервал'
