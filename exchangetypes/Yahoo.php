@@ -7,7 +7,7 @@ use Exception;
 
 class Yahoo extends ExchangeBase
 {
-    const API_URL = 'http://finance.yahoo.com/d/quotes.csv?f=l1d1t1&s=%s%s=X';
+    const API_URL = 'http://download.finance.yahoo.com/d/quotes.csv?f=l1d1t1&s=%s%s=X';
 
     /**
      * {@inheritDoc}
