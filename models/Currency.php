@@ -4,6 +4,7 @@ use Lang;
 use Model;
 use Cache;
 use ValidationException;
+use RainLab\Translate\Classes\Translator;
 
 /**
  * Currency Model
@@ -214,11 +215,17 @@ class Currency extends Model
             return self::$cacheListEnabled;
         }
 
-        $isEnabled = Cache::remember('responsiv.currency.currencies', 1440, function() {
-            return self::isEnabled()->lists('name', 'currency_code');
+        $arr = Cache::remember('responsiv.currency.currencies'.Translator::instance()->getLocale(), 1440, function() {
+            $isEnabled = self::isEnabled()->get();
+            $arr = [];
+            foreach($isEnabled as $currency) $arr[$currency->currency_code] = $currency->name;
+            return $arr;
         });
+        /*$isEnabled = self::isEnabled()->remember(1440)->get();
+        $arr = [];
+        foreach($isEnabled as $currency) $arr[$currency->currency_code] = $currency->name;*/
 
-        return self::$cacheListEnabled = $isEnabled;
+        return self::$cacheListEnabled = $arr;
     }
 
     /**
@@ -238,7 +245,7 @@ class Currency extends Model
      */
     public static function clearCache()
     {
-        Cache::forget('responsiv.currency.currencies');
+        Cache::forget('responsiv.currency.currencies'.Translator::instance()->getLocale());
         Cache::forget('responsiv.currency.primaryCurrency');
     }
 
