@@ -36,15 +36,12 @@ class Currency
         $decimals = $format == 'short' ? 0 : 2;
 
         if (!$toCurrency) {
-            if(!Session::has('responsiv.currency')) $toCurrency = $this->primaryCode();
-            else $toCurrency = Session::get('responsiv.currency');
+            $toCurrency = $this->currentCode();
         }
 
         $result = $this->convert($result, $toCurrency, $fromCurrency);
 
-        $currencyObj = $toCurrency
-            ? CurrencyModel::findByCode($toCurrency)
-            : CurrencyModel::getPrimary();
+        $currencyObj = CurrencyModel::findByCode($toCurrency);
 
         $result = $currencyObj
             ? $currencyObj->formatCurrency($result, $decimals)
@@ -57,10 +54,13 @@ class Currency
         return $result;
     }
 
-    public function convert($value, $toCurrency, $fromCurrency = null)
+    public function convert($value, $toCurrency = null, $fromCurrency = null)
     {
         if (!$fromCurrency) {
             $fromCurrency = $this->primaryCode();
+        }
+        if (!$toCurrency) {
+            $toCurrency = $this->currentCode();
         }
         if ($fromCurrency == $toCurrency) return $value;
 
@@ -71,5 +71,9 @@ class Currency
     {
         return CurrencyModel::getPrimary()->currency_code;
     }
-
+    public function currentCode()
+    {
+        if(!Session::has('responsiv.currency')) return $this->primaryCode();
+        else return Session::get('responsiv.currency');
+    }
 }
