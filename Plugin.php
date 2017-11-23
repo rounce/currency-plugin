@@ -109,7 +109,8 @@ class Plugin extends PluginBase
     {
         return [
             'Responsiv\Currency\ExchangeTypes\EuropeanCentralBank' => 'ecb',
-            'Responsiv\Currency\ExchangeTypes\Yahoo'               => 'yahoo'
+            'Responsiv\Currency\ExchangeTypes\CoinMarketCap'       => 'coinmarketcap',
+            'Responsiv\Currency\ExchangeTypes\Fixer'               => 'fixer'
         ];
     }
 
