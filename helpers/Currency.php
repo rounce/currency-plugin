@@ -47,6 +47,8 @@ class Currency
             ? $currencyObj->formatCurrency($result, $decimals)
             : number_format($result, $decimals);
 
+        $result = str_replace('.00', '', $result);
+
         if ($format == 'long') {
             $result .= ' ' . ($toCurrency ?: $this->primaryCode());
         }
@@ -62,7 +64,7 @@ class Currency
         if (!$toCurrency) {
             $toCurrency = $this->currentCode();
         }
-        if ($fromCurrency == $toCurrency) return $value;
+        if ($fromCurrency == $toCurrency) return round($value, 2);
 
         return CurrencyConverter::instance()->convert($value, $fromCurrency, $toCurrency);
     }
