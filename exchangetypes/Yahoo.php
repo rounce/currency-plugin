@@ -7,7 +7,7 @@ use Exception;
 
 class Yahoo extends ExchangeBase
 {
-    const API_URL = 'http://download.finance.yahoo.com/d/quotes.csv?f=l1d1t1&s=%s%s=X';
+    const API_URL = 'http://finance.yahoo.com/d/quotes.csv?f=l1d1t1&s=%s%s=X';
 
     /**
      * {@inheritDoc}
@@ -16,7 +16,7 @@ class Yahoo extends ExchangeBase
     {
         return [
             'name'        => 'Yahoo',
-            'description' => 'Free currency exchange rate service provided by Yahoo (yahoo.com).'
+            'description' => 'This service has been discontinued.'
         ];
     }
 
@@ -34,7 +34,7 @@ class Yahoo extends ExchangeBase
         }
         catch (Exception $ex) { }
 
-        if (!strlen($response)) {
+        if (!strlen($response) || $response->code != 200) {
             throw new SystemException('Error loading the Yahoo currency exchange feed.');
         }
 
@@ -53,5 +53,4 @@ class Yahoo extends ExchangeBase
     {
         return [];
     }
-
 }
