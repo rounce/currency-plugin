@@ -42,8 +42,11 @@ class Currencies extends ComponentBase
     {
         $this->page['currencies'] = Currency::listEnabled();
 
-        if(!Session::has('responsiv.currency')) $this->page['activeCurrency'] = Currency::getPrimary()->currency_symbol;
-        else $this->page['activeCurrency'] = Session::get('responsiv.symb');
+        if(!Session::has('responsiv.currency')) $this->page['activeCurrencySymb'] = Currency::getPrimary()->currency_symbol;
+        else $this->page['activeCurrencySymb'] = Session::get('responsiv.symb');
+
+        if(!Session::has('responsiv.currency')) $this->page['activeCurrency'] = Currency::getPrimary();
+        else $this->page['activeCurrency'] = Session::get('responsiv.currency');
     }
 
     public function onSwitchCurrency()

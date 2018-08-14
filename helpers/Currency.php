@@ -64,7 +64,7 @@ class Currency
         if (!$toCurrency) {
             $toCurrency = $this->currentCode();
         }
-        if ($fromCurrency == $toCurrency) return round($value, 2);
+        if ($fromCurrency == $toCurrency) return $value;
 
         return CurrencyConverter::instance()->convert($value, $fromCurrency, $toCurrency);
     }
