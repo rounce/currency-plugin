@@ -94,7 +94,8 @@ class Plugin extends PluginBase
     {
         return [
             'filters' => [
-                'currency' => ['Responsiv\Currency\Facades\Currency', 'format']
+                'currency' => ['Responsiv\Currency\Facades\Currency', 'format'],
+                'getSymbol' => ['Responsiv\Currency\Facades\Currency', 'getSymbol']
             ]
         ];
     }

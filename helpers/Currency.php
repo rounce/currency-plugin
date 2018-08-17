@@ -78,4 +78,9 @@ class Currency
         if(!Session::has('responsiv.currency')) return $this->primaryCode();
         else return Session::get('responsiv.currency');
     }
+
+    public function getSymbol($code) {
+        $currency = CurrencyModel::findByCode($code);
+        return $currency->currency_symbol;
+    }
 }

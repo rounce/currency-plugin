@@ -19,4 +19,8 @@ class Currency extends Facade
         $curr = new Helper();
         return $curr->format($value, $params);
     }
+    public static function getSymbol($value) {
+        $curr = new Helper();
+        return $curr->getSymbol($value);
+    }
 }
