@@ -30,16 +30,14 @@ class Currencies extends ComponentBase
      */
     public $activeLocaleName;
 
-    public function componentDetails()
-    {
+    public function componentDetails() {
         return [
             'name'        => 'responsiv.currency::lang.currency_picker.name',
             'description' => 'responsiv.currency::lang.currency_picker.description',
         ];
     }
 
-    public function onRun()
-    {
+    public function onRun() {
         $this->page['currencies'] = Currency::listEnabled();
 
         if(!Session::has('responsiv.currency')) $this->page['activeCurrencySymb'] = Currency::getPrimary()->currency_symbol;
@@ -49,8 +47,7 @@ class Currencies extends ComponentBase
         else $this->page['activeCurrency'] = Session::get('responsiv.currency');
     }
 
-    public function onSwitchCurrency()
-    {
+    public function onSwitchCurrency() {
         if(!$currency = post('currency')) return;
 
         if(!Currency::isValid($currency)) return;
@@ -60,6 +57,6 @@ class Currencies extends ComponentBase
         Session::put('responsiv.currency', $currency);
         Session::put('responsiv.symb', $symb);
 
-        return Redirect::refresh();
+        return Redirect::to(Redirect::getUrlGenerator()->full());
     }
 }

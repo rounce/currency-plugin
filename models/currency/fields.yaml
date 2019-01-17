@@ -52,6 +52,11 @@ fields:
         span: auto
         tab: Currency
 
+    maximum:
+        label: Максимальная цена
+        span: auto
+        tab: Currency
+
     place_symbol_before:
         label: responsiv.currency::lang.currency.place_symbol_before
         type: checkbox

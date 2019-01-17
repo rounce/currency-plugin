@@ -47,7 +47,7 @@ class Currency
             ? $currencyObj->formatCurrency($result, $decimals)
             : number_format($result, $decimals);
 
-        $result = str_replace('.00', '', $result);
+        $result = str_replace(['.00', ',00'], ['', ''], $result);
 
         if ($format == 'long') {
             $result .= ' ' . ($toCurrency ?: $this->primaryCode());
