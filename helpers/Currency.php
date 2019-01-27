@@ -33,7 +33,7 @@ class Currency
 
         $toCurrency = strtoupper($to);
         $fromCurrency = strtoupper($from);
-        $decimals = $format == 'short' ? 0 : 2;
+        $decimals = $format == 'short' ? 0 : 0;
 
         if (!$toCurrency) {
             $toCurrency = $this->currentCode();
@@ -47,7 +47,7 @@ class Currency
             ? $currencyObj->formatCurrency($result, $decimals)
             : number_format($result, $decimals);
 
-        $result = str_replace(['.00', ',00'], ['', ''], $result);
+        //$result = preg_replace('', '', $result);
 
         if ($format == 'long') {
             $result .= ' ' . ($toCurrency ?: $this->primaryCode());
