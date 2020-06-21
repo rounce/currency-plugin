@@ -40,6 +40,7 @@ class Currency
         }
 
         $result = $this->convert($result, $toCurrency, $fromCurrency);
+        if ($format == 'number') return $result;
 
         $currencyObj = CurrencyModel::findByCode($toCurrency);
 
